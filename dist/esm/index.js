@@ -1,4 +1,2 @@
-function combine() {
-}
-export { combine };
+export { combine } from "./functions";
 //# sourceMappingURL=index.js.map

@@ -1,2 +1,1 @@
-declare function combine(): void;
-export { combine };
+export { combine } from "./functions";

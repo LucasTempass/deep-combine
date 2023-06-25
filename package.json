@@ -1,6 +1,6 @@
 {
   "name": "deep-combine",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple utility library for combining/merging objects",
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
