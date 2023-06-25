@@ -1,23 +1,18 @@
 import { DeepPartial, NonEmptyArray } from "../../types";
 
-export function combineTo<Target extends object, O extends Target = Target>(
-  original: Target,
-  ...objects: NonEmptyArray<DeepPartial<Target>>
-): Target {
+// defaults to "object" if no type is provided
+// making it possible to use "combine" without generics
+// unless explicitly provided, the type for the target
+export function combine<
+  Target extends object = object,
+  O extends Target = Target
+>(original: Target, ...objects: NonEmptyArray<DeepPartial<Target>>): Target {
   return objects.reduce((acc, obj) => {
     return combineRecursive(acc, obj);
   }, original);
 }
 
-export function combine(
-  original: object,
-  ...objects: NonEmptyArray<object>
-): object {
-  return objects.reduce((acc, obj) => {
-    return combineRecursive(acc, obj);
-  }, original);
-}
-
+// helper function to combine objects recursively
 function combineRecursive<Target extends object>(
   original: Target,
   toBeCombined: DeepPartial<Target>

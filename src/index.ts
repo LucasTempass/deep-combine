@@ -1,1 +1,1 @@
-export { combine, combineTo } from "./functions";
+export { combine } from "./functions";

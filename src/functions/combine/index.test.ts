@@ -1,10 +1,10 @@
-import { combineTo } from "./index";
+import { combine } from "./index";
 
-describe("combineTo", () => {
+describe("combine", () => {
   it("should return equal object when combining the same", () => {
     const sameObject = { a: 1, b: 2 };
 
-    const result = combineTo<typeof sameObject>(sameObject, sameObject);
+    const result = combine(sameObject, sameObject);
 
     expect(result).toEqual(sameObject);
   });
@@ -16,7 +16,7 @@ describe("combineTo", () => {
     // will overwrite "b" and add "c" but not update "a"
     const toCombine = { b: 3, c: 4 };
 
-    const result = combineTo<Target>(original, toCombine);
+    const result = combine<Target>(original, toCombine);
 
     expect(result).toEqual({ a: 1, b: 3, c: 4 });
   });
@@ -29,7 +29,7 @@ describe("combineTo", () => {
     // will overwrite "b" and add "d" but not update "c"
     const secondToBeCombined = { b: 2, d: 4 };
 
-    const result = combineTo<Target>(
+    const result = combine<Target>(
       original,
       firstToBeCombined,
       secondToBeCombined
@@ -41,7 +41,7 @@ describe("combineTo", () => {
   it("should return original when other object is empty", () => {
     const original = { a: 1 };
 
-    const result = combineTo<typeof original>(original, {});
+    const result = combine<typeof original>(original, {});
 
     expect(result).toEqual(original);
   });
@@ -52,7 +52,7 @@ describe("combineTo", () => {
     const toBeCombined: Target = { a: 1 };
 
     // original is empty because all properties are optional
-    const result = combineTo<Target>({}, toBeCombined);
+    const result = combine<Target>({}, toBeCombined);
 
     expect(result).toEqual(toBeCombined);
   });
@@ -66,7 +66,7 @@ describe("combineTo", () => {
       const original = { a: null };
       const toBeCombined = { a: 2 };
 
-      const result = combineTo<Target>(original, toBeCombined);
+      const result = combine<Target>(original, toBeCombined);
 
       expect(result).toEqual({ a: 2 });
     });
@@ -79,7 +79,7 @@ describe("combineTo", () => {
       const original = { a: 1 };
       const toBeCombined = { a: null };
 
-      const result = combineTo<Target>(original, toBeCombined);
+      const result = combine<Target>(original, toBeCombined);
 
       expect(result).toEqual({ a: null });
     });
@@ -92,7 +92,7 @@ describe("combineTo", () => {
       const original = { a: undefined };
       const toBeCombined = { a: 2 };
 
-      const result = combineTo<Target>(original, toBeCombined);
+      const result = combine<Target>(original, toBeCombined);
 
       expect(result).toEqual({ a: 2 });
     });
@@ -105,7 +105,7 @@ describe("combineTo", () => {
       const original = { a: 2 };
       const toBeCombined = { a: undefined };
 
-      const result = combineTo<Target>(original, toBeCombined);
+      const result = combine<Target>(original, toBeCombined);
 
       expect(result).toEqual({ a: undefined });
     });
@@ -120,7 +120,7 @@ describe("combineTo", () => {
         const original = { a: 1 };
         const toBeCombined = { a: value };
 
-        const result = combineTo<Target>(original, toBeCombined);
+        const result = combine<Target>(original, toBeCombined);
 
         expect(result).toEqual({ a: value });
       }
@@ -134,7 +134,7 @@ describe("combineTo", () => {
       const original = { a: [] };
       const toBeCombined = { a: [1] };
 
-      const result = combineTo<Target>(original, toBeCombined);
+      const result = combine<Target>(original, toBeCombined);
 
       expect(result).toEqual({ a: [1] });
     });
@@ -147,7 +147,7 @@ describe("combineTo", () => {
       const original = { a: [1, 2, 3] };
       const toBeCombined = { a: [] };
 
-      const result = combineTo<Target>(original, toBeCombined);
+      const result = combine<Target>(original, toBeCombined);
 
       expect(result).toEqual({ a: [] });
     });
@@ -167,7 +167,7 @@ describe("combineTo", () => {
       const original: Target = { a: 1, b: { c: "hello", d: { e: true } } };
       const toBeCombined = { b: { c: "world", d: { e: false, f: "new" } } };
 
-      const result = combineTo<Target>(original, toBeCombined);
+      const result = combine<Target>(original, toBeCombined);
 
       expect(result).toEqual({
         a: 1,
@@ -190,7 +190,7 @@ describe("combineTo", () => {
       const original: Target = { a: 1, b: { c: "hello", d: { e: true } } };
       const toBeCombined = { b: { c: "world", d: {} } };
 
-      const result = combineTo<Target>(original, toBeCombined);
+      const result = combine<Target>(original, toBeCombined);
 
       expect(result).toEqual({
         a: 1,
