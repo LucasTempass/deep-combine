@@ -57,6 +57,18 @@ describe("combine", () => {
     expect(result).toEqual(toBeCombined);
   });
 
+  it("should not alter the original object", () => {
+    const original = { a: 1 };
+    const toBeCombined = { a: 2 };
+
+    const result = combine(original, toBeCombined);
+
+    // original should not be mutated
+    expect(original).toEqual({ a: 1 });
+    // result should be the combined object
+    expect(result).toEqual({ a: 2 });
+  });
+
   describe("per property", () => {
     it("should overwrite when original value is null", () => {
       type Target = {
