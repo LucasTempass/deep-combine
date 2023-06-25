@@ -20,16 +20,19 @@ export function combine(
 
 function combineRecursive<Target extends object>(
   original: Target,
-  todo: DeepPartial<Target>
+  toBeCombined: DeepPartial<Target>
 ): Target {
+  // creates a copy of the original object
+  // so that we can overwrite the values without mutating it
   const result: Target = { ...original };
 
-  const keys = Object.keys(todo).map((k: string) => k as keyof Target);
+  const keys = Object.keys(toBeCombined).map((k: string) => k as keyof Target);
 
+  // iterates only over the keys in toBeCombined
   keys.forEach((key) => {
-    const newValue = todo[key as keyof DeepPartial<Target>] as DeepPartial<
-      Target[typeof key]
-    >;
+    const newValue = toBeCombined[
+      key as keyof DeepPartial<Target>
+    ] as DeepPartial<Target[typeof key]>;
 
     const originalValue = original[key];
 
@@ -38,15 +41,21 @@ function combineRecursive<Target extends object>(
       return;
     }
 
-    if (typeof newValue === "object" && newValue !== null) {
+    // if the value is an object, we combine it recursively
+    // otherwise we overwrite it (excluding arrays)
+    if (
+      newValue === null ||
+      typeof newValue !== "object" ||
+      Array.isArray(newValue)
+    ) {
+      Object.assign(result, { [key]: newValue });
+    } else {
       Object.assign(result, {
         [key]: combineRecursive(
           originalValue,
           newValue as DeepPartial<typeof originalValue>
         ),
       });
-    } else {
-      Object.assign(result, { [key]: newValue });
     }
   });
 
