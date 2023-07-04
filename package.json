@@ -28,6 +28,13 @@
   ],
   "author": "Lucas T. Cerveira",
   "license": "ISC",
+  "repository": {
+    "url": "https://github.com/LucasTempass/deep-combine.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/LucasTempass/deep-combine/issues"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.2",
     "husky": "^8.0.0",
