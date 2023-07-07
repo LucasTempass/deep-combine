@@ -1,7 +1,7 @@
 {
   "name": "deep-combine",
   "version": "2.0.2",
-  "description": "A simple utility library for combining/merging objects",
+  "description": "A simple utility library for deep combining objects. It allows to combine objects and their nested properties. Providing better readability, making your code more concise and ensuring type-safety as well.",
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
@@ -35,6 +35,7 @@
   "bugs": {
     "url": "https://github.com/LucasTempass/deep-combine/issues"
   },
+  "readme": "README.md",
   "devDependencies": {
     "@types/jest": "^29.5.2",
     "husky": "^8.0.0",
