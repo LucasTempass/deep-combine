@@ -1,4 +1,4 @@
-# deep-combine
+<h1 align="center"> deep-combine </h1>
 
 ---
 
@@ -35,7 +35,7 @@ function updatePerson(newProps: Partial<Person>): Person {
 }
 ```
 
-### Get Started
+### 🚀 Get Started
 
 Install with npm:
 
@@ -51,7 +51,7 @@ yarn add deep-combine
 
 ---
 
-### Usage
+### 🔨 Usage
 
 #### Import
 
@@ -152,7 +152,7 @@ In your `tsconfig.json` file:
 ```yaml
   "compilerOptions": {
     "exactOptionalPropertyTypes": true,
-    // ... other compiler options
+    // ...other compiler options
   }
 ```
 
