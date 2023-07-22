@@ -12,9 +12,9 @@ function combineRecursive(original, toBeCombined) {
     const keys = Object.keys(toBeCombined).map((k) => k);
     keys.forEach((key) => {
         const newValue = toBeCombined[key];
-        const originalValue = original[key];
+        const originalValue = key in original ? original[key] : undefined;
         if (originalValue === undefined || originalValue === null) {
-            result[key] = newValue;
+            Object.assign(result, { [key]: newValue });
             return;
         }
         if (newValue === null ||

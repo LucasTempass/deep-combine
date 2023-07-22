@@ -1,6 +1,6 @@
 {
   "name": "deep-combine",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "A simple utility library for deep combining objects. It allows to combine objects and their nested properties. Providing better readability, making your code more concise and ensuring type-safety as well.",
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",

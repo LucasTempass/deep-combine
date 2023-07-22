@@ -49,6 +49,8 @@ Install with yarn:
 yarn add deep-combine
 ```
 
+Recommended minimum version: `^3.0.0`
+
 ---
 
 ### 🔨 Usage
@@ -149,11 +151,12 @@ const person: Partial<Person> = {
 To obtain the best results when using `deep-combine` with TypeScript, you can use the following compiler option:
 
 In your `tsconfig.json` file:
+
 ```yaml
   "compilerOptions": {
-    "exactOptionalPropertyTypes": true,
-    // ...other compiler options
-  }
+  "exactOptionalPropertyTypes": true,
+                       // ...other compiler options
+}
 ```
 
 To read more about this, see
